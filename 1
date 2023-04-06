@@ -1,0 +1,45 @@
+process_flg = false;
+
+var windowWidth = $(window).width();
+var windowSm = 601;
+if (windowWidth <= windowSm) {
+
+  //SP
+  const wrap3 = document.querySelector("#cat-list-3");
+  const viewPort3 = wrap3.querySelector(".embla__viewport");
+  const embla3 = EmblaCarousel(viewPort3, { loop: false, dragFree:true, align: 0, slidesToScroll:3, speed:6, containScroll:'trimSnaps' });
+  const setupDotBtns3 = (dotsArray3, embla3) => {
+    dotArray3.forEach((dotNode3, i) => {
+      dotNode3.addEventListener("クリック", () => embla3.scrollTo(i), false);
+    });
+  };
+  const generateDotBtns3 = (dots3, embla3) => {
+    const template3 = document.getElementById("embla-dot-template3").innerHTML;
+    dot3.innerHTML = embla3.scrollSnapList().reduce(acc3 => acc3 + template3, "");
+    return [].slice.call(dots3.querySelectorAll(".embla__dot3"));
+  };
+  const selectDotBtn3 = (dotsArray3, embla3) => () => {
+    const previous = embla3.previousScrollSnap();
+    const selected = embla3.selectedScrollSnap();
+    dotArray3[previous].classList.remove("is-selected");
+    dotArray3[selected].classList.add("is-selected");
+  };
+  const dot3 = document.querySelector(".embla-dots3");
+  const dotArray3 = generateDotBtns3(dot3, embla3);
+  const setSelectedDotBtn3 = selectDotBtn3(dotArray3, embla3);
+  setupDotBtns3(dotArray3, embla3);
+  embla3.on("select", setSelectedDotBtn3);
+  embla3.on("init", setSelectedDotBtn3);
+
+} else {
+
+  //パソコン
+  const wrap3 = document.querySelector("#cat-list-3");
+  const viewPort3 = wrap3.querySelector(".embla__viewport");
+  const embla3 = EmblaCarousel(viewPort3, { loop: false, dragFree:true, align: 0, slidesToScroll:4, speed:6, containScroll:'trimSnaps' });
+  const setupDotBtns3 = (dotsArray3, embla3) => {
+    dotArray3.forEach((dotNode3, i) => {
+      dotNode3.addEventListener("クリック", () => embla3.scrollTo(i), false);
+    });
+  };
+  const generateDotBtns3
